@@ -26,7 +26,10 @@ class _MyAppState extends State<MyApp> {
                     return const Text('initial');
                   }if(state is Increment){
                     return Text(state.count.toString());
-                  }if(state is Remove){
+                  }if(state is Decrement){
+                    return Text(state.count.toString());
+                  }
+                  if(state is Remove){
                     return Text(state.count.toString());
                   }
                   if(state is Error){
@@ -39,18 +42,21 @@ class _MyAppState extends State<MyApp> {
                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
                   }
                 },
-
               ),
               const SizedBox(height: 20,),
               Builder(builder: (context){
-                return Column(
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(onPressed: (){
                       context.read<CounterBloc>().increase();
                     }, child: const Text('increase')),
                     TextButton(onPressed: (){
                       context.read<CounterBloc>().remove();
-                    }, child: const Text('remove'))
+                    }, child: const Text('remove')),
+                    TextButton(onPressed: (){
+                      context.read<CounterBloc>().decrease();
+                    }, child: const Text('decrease'))
                   ],
                 );
               }),

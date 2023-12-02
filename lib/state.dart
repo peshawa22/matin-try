@@ -5,13 +5,18 @@ class Increment extends CounterState{
 
   Increment(this.count);
 }
+class Decrement extends CounterState{
+ final int count;
+
+ Decrement(this.count);
+}
 class Error extends CounterState{
   final String error;
 
   Error(this.error);
 }
 class Remove extends CounterState{
-  int count;
+ final int count;
 
   Remove(this.count);
 }

@@ -11,6 +11,14 @@ class CounterBloc extends Cubit<CounterState>{
       emit(Error('some thing is wrong'));
     }
   }
+  void decrease(){
+    if(count>=-5){
+      emit(Decrement(count--)
+      );
+    }else{
+      emit(Error('some thing is wrong'));
+    }
+  }
   void remove(){
     emit(Remove(count=0));
   }
