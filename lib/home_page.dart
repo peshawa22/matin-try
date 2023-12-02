@@ -21,6 +21,11 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BlocConsumer<CounterBloc,CounterState>(
+                buildWhen: (previous,current){
+                  if(current is Error){
+                    return false;
+                  }return true;
+                },
                 builder: (context,state){
                   if(state is Initial){
                     return const Text('initial');
