@@ -21,13 +21,18 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BlocConsumer<CounterBloc,CounterState>(
-              
                 builder: (context,state){
                   if(state is Initial){
                     return const Text('initial');
                   }if(state is Increment){
                     return Text(state.count.toString());
-                  }else{return const Text('Nothings');}
+                  }if(state is Remove){
+                    return Text(state.count.toString());
+                  }
+                  if(state is Error){
+                    return Text(state.error);
+                  }
+                  else{return const Text('Nothings');}
                 },
                 listener: (BuildContext context, CounterState state) {
                   if(state is Error){
@@ -38,10 +43,18 @@ class _MyAppState extends State<MyApp> {
               ),
               const SizedBox(height: 20,),
               Builder(builder: (context){
-                return TextButton(onPressed: (){
-                  context.read<CounterBloc>().increase();
-                }, child: const Text('increase'));
-              })
+                return Column(
+                  children: [
+                    TextButton(onPressed: (){
+                      context.read<CounterBloc>().increase();
+                    }, child: const Text('increase')),
+                    TextButton(onPressed: (){
+                      context.read<CounterBloc>().remove();
+                    }, child: const Text('remove'))
+                  ],
+                );
+              }),
+              
             ],
           ),
         )

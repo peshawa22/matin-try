@@ -5,11 +5,14 @@ class CounterBloc extends Cubit<CounterState>{
   int count=0;
   CounterBloc():super(Initial());
   void increase(){
-    if(count<5){
+    if(count<=5){
       emit(Increment(count++));
     }else{
       emit(Error('some thing is wrong'));
     }
+  }
+  void remove(){
+    emit(Remove(count=0));
   }
 
 }

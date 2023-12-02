@@ -10,3 +10,8 @@ class Error extends CounterState{
 
   Error(this.error);
 }
+class Remove extends CounterState{
+  int count;
+
+  Remove(this.count);
+}
